@@ -1,0 +1,18 @@
+---
+- name: WEBserver instsllstion and configuration playbook
+  hosts: all
+  tasks: 
+    - name: httpd package  installation
+      yum:
+       name: httpd
+       state: present
+    - name: create index.html file
+      copy: 
+       content: "Welcome to leads"
+       dest: /var/www/html/index.html
+    - name: start httpd service
+      service:
+       name: httpd
+       state: started
+       enabled: yes
+
